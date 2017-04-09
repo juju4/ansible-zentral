@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+#- hosts: test-kitchen
+  vars:
+    - postgresql_databases:
+      - name: "{{ zentral_pgsql_db }}"
+    - postgresql_users:
+      - name: "{{ zentral_pgsql_user }}"
+        password: "{{ zentral_pgsql_pass }}"
+        priv: ALL
+        db: "{{ zentral_pgsql_db }}"
+    - rabbitmq_cert_source: 'self'
+    - elasticsearch_repo_version: 5.x 
+    - logstash_repo_version: 5.x 
+    - kibana_repo_version: 5.x
+  roles:
+    - juju4.zentral
+

@@ -1,0 +1,9 @@
+---
+
+zentral_pkg_deps:
+  - cpio
+  - git
+  - xmlsec1
+  - python
+  - python-pip
+

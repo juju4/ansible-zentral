@@ -1,0 +1,25 @@
+[Unit]
+Description=Zentral server
+Requires=redis.service
+#Wants=mysqld.service postgresql.service
+After=redis.service
+ 
+[Service]
+## no daemon mode
+Type=simple
+## daemon mode
+#Type=forking
+User=_zentral
+Group=_zentral
+WorkingDirectory={{ zentral_homedir }}/zentral
+ExecStart=/usr/bin/python server/manage.py runserver {{ zentral_ip_listen }}:{{ zentral_port }}
+UMask=0022
+TimeoutSec=30
+RestartSec=15s
+#Restart=always
+Restart=on-failure
+SyslogIdentifier=zentral
+PrivateTmp=true
+ 
+[Install]
+WantedBy=multi-user.target

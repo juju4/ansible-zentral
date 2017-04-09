@@ -1,0 +1,32 @@
+---
+
+zentral_version: HEAD
+
+zentral_ip_listen: 0.0.0.0
+zentral_port: 8000
+zentral_admin_email: 'changethis@example.com'
+
+zentral_uid: 900
+zentral_homedir: /var/_zentral
+zentral_service_enabled: true
+zentral_logdir: /var/log/zentral
+
+zentral_pgsql_user: zentral
+zentral_pgsql_pass: zentral
+zentral_pgsql_db: zentral
+
+zentral_cn: zentral
+zentral_certificate_key: ''
+zentral_certificate_cert: ''
+zentral_certificate_cert_fullchain: "{{ zentral_homedir }}/zentral/conf/start/docker/tls/zentral_fullchain.crt"
+zentral_certificate_root_ca: ''
+zentral_allowed_hosts:
+  - '*'
+
+zentral_elastic_servers:
+#  - "http://elastic:9200"
+  - "http://localhost:9200"
+zentral_kibana_base_url: "https://{{ zentral_cn }}/kibana/"
+
+zentral_rabbitmq_enable: true
+

@@ -1,0 +1,123 @@
+---
+
+- name: Install zentral package dependencies
+  package: name={{ item }} state=present
+  with_items: "{{ zentral_pkg_deps }}"
+
+- name: add zentral group
+  group:
+    name: _zentral
+    state: present
+
+- name: add zentral user
+  user:
+    name: _zentral
+    group: _zentral
+    uid: "{{ zentral_uid }}"
+    shell: /bin/false
+    home: "{{ zentral_homedir }}"
+
+- name: git clone zentral repository
+  git:
+    repo: https://github.com/zentralopensource/zentral.git
+    dest: "{{ zentral_homedir }}/zentral"
+    version: "{{ zentral_version }}"
+    update: no
+
+- name: install python pip requirements
+  pip:
+    requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
+
+- name: ensure directories exist
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: _zentral
+    group: _zentral
+  with_items:
+    - /prometheus_sd
+    - "{{ zentral_logdir }}"
+
+- include: secret.yml
+- set_fact:
+    api_secret: "{{ rand.stdout }}"
+- include: secret.yml
+- set_fact:
+    django_secret: "{{ rand.stdout }}"
+- include: secret.yml
+- set_fact:
+    prometheus_secret: "{{ rand.stdout }}"
+
+- name: configure zentral
+  template:
+    src: base.json.j2
+    dest: "{{ zentral_homedir }}/zentral/conf/start/zentral/base.json"
+    mode: '0644'
+    backup: yes
+    validate: 'python -mjson.tool %s'
+
+- include: certificate-selfsigned.yml
+  when: zentral_certificate_cert == ''
+
+- name: create cert full chain
+  shell: "cat {{ zentral_certificate_root_ca }} {{ zentral_certificate_cert }} > {{ zentral_certificate_cert_fullchain }}"
+  args:
+    creates: "{{ zentral_homedir }}/zentral_full_chain.crt"
+  when: zentral_certificate_root_ca != '' and zentral_certificate_cert != ''
+
+## FIXME! have file inside /var/_zentral/zentral/conf/start/docker/tls/
+
+## FIXME! https://github.com/zentralopensource/zentral/blob/master/docker-compose.saml2.yml to convert base.json in zentral.conf / /var/_zentral/zentral/server/server/settings.py
+
+- block:
+    - name: install zentral systemd configuration
+      template:
+        src: "systemd-{{ item }}.service.j2"
+        dest: "/lib/systemd/system/{{ item }}.service"
+        mode: '0644'
+        backup: yes
+      with_items:
+        - zentral-gunicorn
+        - zentral
+        - zentral-workers
+      register: systemdconf
+      ignore_errors: true
+    - block:
+        - include: "immutable.yml target_dir=/lib/systemd/system state=pre"
+        - name: install zentral systemd configuration
+          template:
+            src: "systemd-{{ item }}.service.j2"
+            dest: "/lib/systemd/system/{{ item }}.service"
+            mode: '0644'
+            backup: yes
+          with_items:
+            - zentral-gunicorn
+            - zentral
+            - zentral-workers
+        - include: "immutable.yml target_dir=/lib/systemd/system state=post"
+      when: systemdconf|failed
+    - block:
+        - name: enable and start zentral systemd services
+          service:
+            name: "{{ item }}"
+            enabled: yes
+            state: 'started'
+          ignore_errors: true
+          with_items:
+            - zentral-gunicorn
+            - zentral
+            - zentral-workers
+      when: zentral_service_enabled
+    - block:
+        - name: disable and stop rekall-agent systemd service
+          service:
+            name: "{{ item }}"
+            enabled: no
+            state: 'stopped'
+          ignore_errors: true
+          with_items:
+            - zentral-gunicorn
+            - zentral
+            - zentral-workers
+      when: not zentral_service_enabled
+  when: ansible_service_mgr == 'systemd'
