@@ -20,6 +20,8 @@ zentral_certificate_key: ''
 zentral_certificate_cert: ''
 zentral_certificate_cert_fullchain: "{{ zentral_homedir }}/zentral/conf/start/docker/tls/zentral_fullchain.crt"
 zentral_certificate_root_ca: ''
+zentral_certinfo: '/C=US/ST=CA/L=San Francisco/O=Ansible Zentral'
+zentral_certduration: 365
 zentral_allowed_hosts:
   - '*'
 

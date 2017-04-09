@@ -7,3 +7,6 @@ zentral_pkg_deps:
   - python
   - python-pip
 
+ssl_user: ssl-cert
+ssl_dir: /etc/ssl
+ssl_privatedir: /etc/ssl/private
