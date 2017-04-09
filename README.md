@@ -1,10 +1,10 @@
-[![Build Status - Master](https://travis-ci.org/juju4/ansible-zentral.svg?branch=master)](https://travis-ci.org/juju4/ansible-myrole)
-[![Build Status - Devel](https://travis-ci.org/juju4/ansible-zentral.svg?branch=devel)](https://travis-ci.org/juju4/ansible-myrole/branches)
-# ABC ansible role
+[![Build Status - Master](https://travis-ci.org/juju4/ansible-zentral.svg?branch=master)](https://travis-ci.org/juju4/ansible-zentral)
+[![Build Status - Devel](https://travis-ci.org/juju4/ansible-zentral.svg?branch=devel)](https://travis-ci.org/juju4/ansible-zentral/branches)
+# Zentral ansible role
 
 Ansible role to setup zentral, framework to gather, process, and monitor system events and link them to an inventory.
 https://github.com/zentralopensource/zentral/
-It leverages tools like facebook osquery, google santa
+It leverages tools like facebook osquery, google santa.
 
 ## Requirements & Dependencies
 
