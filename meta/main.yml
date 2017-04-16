@@ -27,7 +27,7 @@ galaxy_info:
   - security
 dependencies:
   - geerlingguy.postgresql
-  - geerlingguy.redis
+#  - geerlingguy.redis
   - geerlingguy.java
   - geerlingguy.elasticsearch
   - geerlingguy.logstash

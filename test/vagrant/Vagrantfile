@@ -26,7 +26,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.define "vzentral" do |vzentral|
         vzentral.vm.hostname = "vmyrole"
         vzentral.vm.provider "virtualbox" do |v|
-          v.memory = 1024
+          # Elasticsearch requires more memory
+          v.memory = 4096
         end
     end
 

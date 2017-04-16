@@ -27,6 +27,5 @@ describe file('/var/log/zentral/gunicorn.err') do
   its(:content) { should match /Starting gunicorn / }
   its(:content) { should match /Listening at: / }
   its(:content) { should_not match /Error/ }
-  its(:exit_status) { should eq 0 }
 end
 

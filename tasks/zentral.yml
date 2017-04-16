@@ -24,6 +24,8 @@
     version: "{{ zentral_version }}"
     update: no
 
+- include: profile.yml
+
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
@@ -109,7 +111,7 @@
             - zentral-workers
       when: zentral_service_enabled
     - block:
-        - name: disable and stop rekall-agent systemd service
+        - name: disable and stop zentral systemd services
           service:
             name: "{{ item }}"
             enabled: no

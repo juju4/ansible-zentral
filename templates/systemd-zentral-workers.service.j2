@@ -1,18 +1,20 @@
 [Unit]
 Description=Zentral workers
-Requires=redis.service
+#Requires=redis.service
 #Wants=mysqld.service postgresql.service
-After=redis.service
+#After=redis.service
  
 [Service]
 ## no daemon mode
-Type=simple
+#Type=simple
 ## daemon mode
 #Type=forking
 User=_zentral
 Group=_zentral
+Environment="ZENTRAL_CONF_DIR={{ zentral_homedir }}/zentral/conf/start/zentral"
 WorkingDirectory={{ zentral_homedir }}/zentral
 ExecStart=/usr/bin/python server/manage.py runserver runworkers
+#ExecStart=/usr/bin/python server/manage.py runserver runworkers --prometheus-sd-file {{ zentral_homedir }}/zentral/conf/prometheus_sd/workers.yml --promotheus-base-port 8100
 UMask=0022
 TimeoutSec=30
 RestartSec=15s
@@ -22,4 +24,4 @@ SyslogIdentifier=zentral
 PrivateTmp=true
  
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

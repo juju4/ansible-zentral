@@ -1,18 +1,20 @@
 [Unit]
 Description=Zentral Gunicorn
-Requires=redis.service
+#Requires=redis.service
 #Wants=mysqld.service postgresql.service
-After=redis.service
+#After=redis.service
  
 [Service]
 ## no daemon mode
-Type=simple
+#Type=simple
 ## daemon mode
 #Type=forking
 User=_zentral
 Group=_zentral
-WorkingDirectory={{ zentral_homedir }}/zentral
-ExecStart=/usr/local/bin/gunicorn --chdir {{ zentral_homedir }}/zentral/server/server -b {{ zentral_ip_listen }}:{{ zentral_port }} -w 4 --access-logfile {{ zentral_logdir }}/gunicorn.log --error-logfile {{ zentral_logdir }}/gunicorn.err server.wsgi
+Environment="ZENTRAL_CONF_DIR={{ zentral_homedir }}/zentral/conf/start/zentral"
+WorkingDirectory={{ zentral_homedir }}/zentral/server/
+ExecStart=/usr/local/bin/gunicorn --chdir {{ zentral_homedir }}/zentral/server -b {{ zentral_ip_listen }}:{{ zentral_port }} -w 4 --access-logfile {{ zentral_logdir }}/gunicorn.log --error-logfile {{ zentral_logdir }}/gunicorn.err server.wsgi
+ExecReload=/bin/kill -HUP $MAINPID
 UMask=0022
 TimeoutSec=30
 RestartSec=15s
@@ -22,4 +24,4 @@ SyslogIdentifier=zentral
 PrivateTmp=true
  
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
