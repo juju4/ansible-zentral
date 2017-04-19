@@ -29,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           # Elasticsearch requires more memory
           v.memory = 4096
         end
+        vzentral.vm.network "forwarded_port", guest: 8000, host: 8888
     end
 
 end

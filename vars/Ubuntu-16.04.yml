@@ -4,8 +4,8 @@ zentral_pkg_deps:
   - cpio
   - git
   - xmlsec1
-  - python
-  - python-pip
+  - python3
+  - python3-pip
 
 ssl_user: ssl-cert
 ssl_dir: /etc/ssl

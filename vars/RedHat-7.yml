@@ -1,5 +1,12 @@
 ---
 
+zentral_pkg_deps:
+  - cpio
+  - git
+  - xmlsec1
+  - python3
+  - python3-pip
+
 ssl_user: root
 ssl_dir: /etc/pki/tls
 ssl_privatedir: /etc/pki/tls/private

@@ -29,6 +29,7 @@
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
+    executable: pip3
 
 - name: ensure directories exist
   file:
@@ -84,6 +85,8 @@
         - zentral-workers
       register: systemdconf
       ignore_errors: true
+      notify:
+        - reload systemd
     - block:
         - include: "immutable.yml target_dir=/lib/systemd/system state=pre"
         - name: install zentral systemd configuration
@@ -96,6 +99,8 @@
             - zentral-gunicorn
             - zentral
             - zentral-workers
+          notify:
+            - reload systemd
         - include: "immutable.yml target_dir=/lib/systemd/system state=post"
       when: systemdconf|failed
     - block:
