@@ -6,6 +6,8 @@ zentral_pkg_deps:
   - xmlsec1
   - python3
   - python3-pip
+  - gcc
+  - libffi-dev
 
 ssl_user: ssl-cert
 ssl_dir: /etc/ssl

@@ -6,6 +6,8 @@ zentral_pkg_deps:
   - xmlsec1
   - python34
   - python34-pip
+  - gcc
+  - libffi-devel
 
 ssl_user: root
 ssl_dir: /etc/pki/tls
