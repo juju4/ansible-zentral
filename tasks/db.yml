@@ -1,0 +1,38 @@
+---
+
+- name: Check database configuration in settings.py
+  replace:
+    dest: "{{ zentral_homedir }}/zentral/server/server/settings.py"
+    regexp: "{{ item.re }}"
+    replace: "{{ item.rep }}"
+    backup: yes
+  with_items:
+    - { re: "^(\\s+)'NAME': .*,", rep: "\\1'NAME': '{{ zentral_pgsql_db }}'," }
+    - { re: "^(\\s+)'USER': .*,", rep: "\\1'USER': '{{ zentral_pgsql_user }}'," }
+
+- name: migrate db
+  command: python3 manage.py migrate
+  args:
+    chdir: "{{ zentral_homedir }}/zentral/server"
+  environment:
+    ZENTRAL_CONF_DIR: "{{ zentral_homedir }}/zentral/conf/start/zentral"
+  register: migratedb
+  changed_when: not ('No migrations to apply' in migratedb.stdout)
+  become: yes
+  become_user: "_zentral"
+#- debug: var=migratedb
+
+- name: create users
+  command: "python3 manage.py create_zentral_user {{ item.user }} {{ item.email }}"
+  args:
+    chdir: "{{ zentral_homedir }}/zentral/server"
+  environment:
+    ZENTRAL_CONF_DIR: "{{ zentral_homedir }}/zentral/conf/start/zentral"
+  with_items: "{{ zentral_users }}"
+  register: users
+  changed_when: not ('already exists' in users.stdout)
+  become: yes
+  become_user: "_zentral"
+#- debug: var=users
+
+

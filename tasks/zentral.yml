@@ -70,27 +70,7 @@
   when: zentral_certificate_root_ca != '' and zentral_certificate_cert != ''
 
 
-- name: migrate db
-  command: python3 manage.py migrate
-  args:
-    chdir: "{{ zentral_homedir }}/zentral/server"
-  environment:
-    ZENTRAL_CONF_DIR: "{{ zentral_homedir }}/zentral/conf/start/zentral"
-  register: migratedb
-  changed_when: not ('No migrations to apply' in migratedb.stdout)
-#- debug: var=migratedb
-
-- name: create users
-  command: "python3 manage.py create_zentral_user {{ item.user }} {{ item.email }}"
-  args:
-    chdir: "{{ zentral_homedir }}/zentral/server"
-  environment:
-    ZENTRAL_CONF_DIR: "{{ zentral_homedir }}/zentral/conf/start/zentral"
-  with_items: "{{ zentral_users }}"
-  register: users
-  changed_when: not ('already exists' in users.stdout)
-#- debug: var=users
-
+- include: db.yml
 
 ## FIXME! have file inside /var/_zentral/zentral/conf/start/docker/tls/
 
