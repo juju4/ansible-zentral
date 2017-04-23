@@ -8,6 +8,7 @@ zentral_pkg_deps:
   - python34-pip
   - gcc
   - libffi-devel
+  - openssl-devel
   - python34-devel
 
 ssl_user: root
