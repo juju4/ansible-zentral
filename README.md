@@ -14,7 +14,8 @@ It was tested on the following versions:
 
 ### Operating systems
 
-Ubuntu 14.04, 16.04 and Centos7
+Ubuntu 16.04 and Centos7
+Zentral requires Postgresql 9.4+ and ELKv5 which implies Java8+.
 
 ## Example Playbook
 
@@ -72,6 +73,8 @@ $ packer build -only=digitalocean packer-*.json
 
 ## Troubleshooting & Known issues
 
+* Zentral requires postgres >= 9.4 for jsonb type.
+Default Centos7 has 9.2, Trusty has 9.3 and Xenial 9.5.
 
 ## License
 

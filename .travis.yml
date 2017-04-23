@@ -16,7 +16,7 @@ env:
     init: /lib/systemd/systemd
     run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
 #    run_opts: "--cap-add SYS_ADMIN"
-## ELK v5 requires Java8+
+## ELK v5 requires Java8+, also postgresql 9.4+
 #  - distribution: ubuntu
 #    version: 14.04
 #    init: /sbin/init
