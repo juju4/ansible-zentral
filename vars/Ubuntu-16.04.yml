@@ -8,6 +8,7 @@ zentral_pkg_deps:
   - python3-pip
   - gcc
   - libffi-dev
+  - python3-dev
 
 ssl_user: ssl-cert
 ssl_dir: /etc/ssl
