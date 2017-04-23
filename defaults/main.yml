@@ -2,6 +2,9 @@
 
 zentral_version: HEAD
 
+zentral_users:
+  - { user: zadmin, email: 'root@localhost' }
+
 zentral_ip_listen: 0.0.0.0
 zentral_port: 8000
 zentral_admin_email: 'changethis@example.com'
@@ -11,9 +14,10 @@ zentral_homedir: /var/_zentral
 zentral_service_enabled: true
 zentral_logdir: /var/log/zentral
 
-zentral_pgsql_user: zentral
-zentral_pgsql_pass: zentral
-zentral_pgsql_db: zentral
+## mapping shell user for 'Peer authentication'
+zentral_pgsql_user: _zentral
+zentral_pgsql_pass: zentralpass
+zentral_pgsql_db: zentraldb
 
 zentral_cn: zentral
 zentral_certificate_key: ''
