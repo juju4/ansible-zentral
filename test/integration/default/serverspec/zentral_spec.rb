@@ -23,6 +23,10 @@ describe service('zentral-gunicorn') do
   it { should be_running }
 end  
 
+describe file('/var/_zentral/zentral/server/manage.py') do
+  it { should be_executable }
+end
+
 describe file('/var/log/zentral/gunicorn.err') do
   its(:content) { should match /Starting gunicorn / }
   its(:content) { should match /Listening at: / }
