@@ -85,7 +85,6 @@
         backup: yes
       with_items:
         - zentral-gunicorn
-        - zentral
         - zentral-workers
       register: systemdconf
       ignore_errors: true
@@ -101,7 +100,6 @@
             backup: yes
           with_items:
             - zentral-gunicorn
-            - zentral
             - zentral-workers
           notify:
             - reload systemd
@@ -116,7 +114,6 @@
           ignore_errors: true
           with_items:
             - zentral-gunicorn
-            - zentral
             - zentral-workers
       when: zentral_service_enabled
     - block:
@@ -128,7 +125,6 @@
           ignore_errors: true
           with_items:
             - zentral-gunicorn
-            - zentral
             - zentral-workers
       when: not zentral_service_enabled
   when: ansible_service_mgr == 'systemd'
