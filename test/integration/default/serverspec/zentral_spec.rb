@@ -10,10 +10,6 @@ set :backend, :exec
 #end
 
 
-describe service('zentral') do
-  it { should be_enabled }
-  it { should be_running }
-end  
 describe service('zentral-workers') do
   it { should be_enabled }
   it { should be_running }

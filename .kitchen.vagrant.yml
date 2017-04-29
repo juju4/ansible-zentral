@@ -2,6 +2,9 @@
 driver:
   name: vagrant
   provider: <%= ENV['KITCHEN_PROVIDER'] || 'virtualbox' %>
+  customize:
+    memory: 4096
+    cpuexecutioncap: 50
 
 ## make file transfer faster. need https://github.com/coderanger/kitchen-sync
 transport:
