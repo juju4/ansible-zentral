@@ -10,7 +10,8 @@ rolesdir=$(dirname $0)/..
 fi
 
 [ ! -d $rolesdir/juju4.redhat-epel ] && git clone https://github.com/juju4/ansible-redhat-epel $rolesdir/juju4.redhat-epel
-[ ! -d $rolesdir/geerlingguy.postgresql ] && git clone https://github.com/geerlingguy/ansible-role-postgresql $rolesdir/geerlingguy.postgresql
+#[ ! -d $rolesdir/geerlingguy.postgresql ] && git clone https://github.com/geerlingguy/ansible-role-postgresql $rolesdir/geerlingguy.postgresql
+[ ! -d $rolesdir/geerlingguy.postgresql ] && git clone https://github.com/juju4/ansible-role-postgresql $rolesdir/geerlingguy.postgresql
 [ ! -d $rolesdir/geerlingguy.redis ] && git clone https://github.com/juju4/ansible-role-redis.git $rolesdir/geerlingguy.redis
 [ ! -d $rolesdir/geerlingguy.java ] && git clone https://github.com/juju4/ansible-role-java.git $rolesdir/geerlingguy.java
 [ ! -d $rolesdir/Mayeu.RabbitMQ ] && git clone https://github.com/juju4/ansible-playbook-rabbitmq.git $rolesdir/Mayeu.RabbitMQ
