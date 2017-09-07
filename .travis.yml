@@ -76,7 +76,7 @@ script:
 #  - 'sudo docker exec --tty "$(cat ${container_id})" /etc/ansible/roles/juju4.zentral/test/integration/default/serverspec/run-local-tests.sh'
 
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/bin/gunicorn --version'
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo -u _zentral -H psql -U _zentral zentraldb -c "\\dt"'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo -u _zentral -H psql -U _zentral -P pager=off zentraldb -c "\\dt"'
 
 after_failure:
   # Check what happened on systemd systems.

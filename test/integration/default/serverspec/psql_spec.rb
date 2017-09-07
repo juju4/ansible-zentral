@@ -9,7 +9,7 @@ set :backend, :exec
 #    c.formatter = 'JUnit'
 #end
 
-describe command("psql -U _zentral zentraldb -c '\\dt'") do
+describe command("psql -U _zentral -P pager=off zentraldb -c '\\dt'") do
   its(:stdout) { should match /accounts_user/ }
   its(:stdout) { should match /inventory_machinetag/ }
   its(:stdout) { should match /probes_feed/ }
