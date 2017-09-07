@@ -9,7 +9,7 @@ set :backend, :exec
 #    c.formatter = 'JUnit'
 #end
 
-describe file('/bin/gunicorn') do
+describe file('/usr/local/bin/gunicorn') do
   it { should be_executable }
 end
 

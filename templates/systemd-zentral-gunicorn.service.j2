@@ -13,7 +13,7 @@ User=_zentral
 Group=_zentral
 Environment="ZENTRAL_CONF_DIR={{ zentral_homedir }}/zentral/conf/start/zentral"
 WorkingDirectory={{ zentral_homedir }}/zentral/server/
-ExecStart=/bin/gunicorn --chdir {{ zentral_homedir }}/zentral/server -b {{ zentral_ip_listen }}:{{ zentral_port }} -w 4 --access-logfile {{ zentral_logdir }}/gunicorn.log --error-logfile {{ zentral_logdir }}/gunicorn.err server.wsgi
+ExecStart=/usr/local/bin/gunicorn --chdir {{ zentral_homedir }}/zentral/server -b {{ zentral_ip_listen }}:{{ zentral_port }} -w 4 --access-logfile {{ zentral_logdir }}/gunicorn.log --error-logfile {{ zentral_logdir }}/gunicorn.err server.wsgi
 ExecReload=/bin/kill -HUP $MAINPID
 UMask=0022
 TimeoutSec=30
