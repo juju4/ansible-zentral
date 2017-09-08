@@ -75,14 +75,14 @@ script:
 ## travis/docker: Errno::EROFS: Read-only file system @ dir_s_mkdir - /etc/ansible/roles/juju4.zentral/test/integration/default/serverspec/.bundle
 #  - 'sudo docker exec --tty "$(cat ${container_id})" /etc/ansible/roles/juju4.zentral/test/integration/default/serverspec/run-local-tests.sh'
 
-  - '[ "X$distribution" = Xubuntu ] && docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/bin/gunicorn --version'
-  - '[ "X$distribution" = Xcentos ] && docker exec --tty "$(cat ${container_id})" env TERM=xterm /bin/gunicorn --version'
+  - 'if [ "X$distribution" = Xubuntu ]; then docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/bin/gunicorn --version; else true; fi'
+  - 'if [ "X$distribution" = Xcentos ]; then docker exec --tty "$(cat ${container_id})" env TERM=xterm /bin/gunicorn --version; else true; fi'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm sudo -u _zentral -H psql -U _zentral -P pager=off zentraldb -c "\\dt"'
 
 after_failure:
   # Check what happened on systemd systems.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l status zentral-gunicorn.service'
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l status zentral-workers.service'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status zentral-gunicorn.service'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status zentral-workers.service'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm journalctl -xe --no-pager'
 
 after_script:
