@@ -9,7 +9,10 @@ set :backend, :exec
 #    c.formatter = 'JUnit'
 #end
 
-describe file('/usr/local/bin/gunicorn') do
+describe file('/usr/local/bin/gunicorn'), :if => os[:family] == 'ubuntu' || os[:family] == 'debian' do
+  it { should be_executable }
+end
+describe file('/bin/gunicorn'), if => os[:family] == 'redhat' do
   it { should be_executable }
 end
 

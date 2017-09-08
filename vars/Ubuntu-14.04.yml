@@ -11,6 +11,7 @@ zentral_pkg_deps:
   - libssl-dev
   - python3-dev
 
+gunicorn_path: /usr/local/bin/gunicorn
 ssl_user: ssl-cert
 ssl_dir: /etc/ssl
 ssl_privatedir: /etc/ssl/private

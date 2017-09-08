@@ -11,6 +11,7 @@ zentral_pkg_deps:
   - openssl-devel
   - python34-devel
 
+gunicorn_path: /bin/gunicorn
 ssl_user: root
 ssl_dir: /etc/pki/tls
 ssl_privatedir: /etc/pki/tls/private
