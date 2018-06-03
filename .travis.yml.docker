@@ -13,11 +13,15 @@ env:
     run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
     suite: default-zentral-rhel
   - distribution: ubuntu
+    version: 18.04
+    init: /lib/systemd/systemd
+    run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
+    suite: default
+  - distribution: ubuntu
     version: 16.04
     init: /lib/systemd/systemd
     run_opts: "'--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro'"
     suite: default
-#    run_opts: "--cap-add SYS_ADMIN"
 ## ELK v5 requires Java8+, also postgresql 9.4+
 #  - distribution: ubuntu
 #    version: 14.04

@@ -11,10 +11,11 @@ It leverages tools like facebook osquery, google santa.
 ### Ansible
 It was tested on the following versions:
  * 2.2
+ * 2.5
 
 ### Operating systems
 
-Ubuntu 16.04 and Centos7
+Ubuntu 16.04, 18.04 and Centos7
 Zentral requires Postgresql 9.4+ and ELKv5 which implies Java8+.
 
 ## Example Playbook
