@@ -87,6 +87,9 @@ after_failure:
   # Check what happened on systemd systems.
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status zentral-gunicorn.service'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status zentral-workers.service'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status rabbitmq-server.service'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm rabbitmqctl status'
+  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm systemctl -l --no-pager status postgresql.service'
   - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm journalctl -xe --no-pager'
 
 after_script:
