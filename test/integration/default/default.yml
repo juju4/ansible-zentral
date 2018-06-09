@@ -12,6 +12,7 @@
         db: "{{ zentral_pgsql_db }}"
     - rabbitmq_cert_source: 'self'
     - elasticsearch_repo_version: 5.x 
+    - elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
     - logstash_repo_version: 5.x 
     - kibana_repo_version: 5.x
   roles:

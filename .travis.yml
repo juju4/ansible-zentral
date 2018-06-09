@@ -28,6 +28,7 @@ before_install:
   - env
   - pwd
   - find -ls
+  - sysctl vm.max_map_count
 ## use appropriate role path and not github name
   - "[ -f get-dependencies.sh ] && sh -x get-dependencies.sh"
 ## postgresql role debug
