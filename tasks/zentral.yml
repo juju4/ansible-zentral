@@ -27,6 +27,13 @@
 
 - include: profile.yml
 
+# required on xenial (default package is 1.2.3), https://github.com/pyca/pyopenssl/issues/559
+- name: force recent cryptography in python pip requirements
+  replace:
+    dest: "{{ zentral_homedir }}/zentral/requirements.txt"
+    regexp: '^cryptography.*'
+    replace: 'cryptography>=1.7.1'
+
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
