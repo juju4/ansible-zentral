@@ -1,6 +1,10 @@
 ---
 driver:
   name: lxd_cli
+  config:
+    limits.memory: 4GB
+    limits.cpu: 2
+    limits.cpu.allowance: 60%
 
 transport:
   name: sftp
