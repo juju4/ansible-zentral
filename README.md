@@ -77,6 +77,8 @@ $ packer build -only=digitalocean packer-*.json
 * Zentral requires postgres >= 9.4 for jsonb type.
 Default Centos7 has 9.2, Trusty has 9.3 and Xenial 9.5.
 
+* Ubuntu 18.04/Postgresql 10 requires [ansible 2.6](https://github.com/ansible/ansible/issues/25823) so user creation set with encrypted=yes (still failing).
+
 ## License
 
 BSD 2-clause
