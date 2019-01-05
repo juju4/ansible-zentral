@@ -26,5 +26,3 @@
 #    attributes: '----i-----I--e--'
   when: state == 'post'
   ignore_errors: true
-
-

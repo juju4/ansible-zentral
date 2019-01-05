@@ -17,4 +17,3 @@
     - kibana_repo_version: 5.x
   roles:
     - juju4.zentral
-

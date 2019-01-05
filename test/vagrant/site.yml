@@ -25,4 +25,3 @@
       when: ansible_os_family == 'RedHat' and ansible_distribution_version.split('.')[0] == '7'
   roles:
     - juju4.zentral
-

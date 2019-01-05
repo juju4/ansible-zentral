@@ -34,5 +34,3 @@
   become: yes
   become_user: "_zentral"
 #- debug: var=users
-
-

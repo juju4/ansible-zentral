@@ -1,8 +1,9 @@
 ---
 
 - name: Install zentral package dependencies
-  package: name={{ item }} state=present
-  with_items: "{{ zentral_pkg_deps }}"
+  package: name={{ zentral_pkg_deps }} state=present
+  register: pkg_result
+  until: pkg_result is success
 
 - name: add zentral group
   group:
@@ -38,6 +39,8 @@
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
     executable: pip3
+  register: pkg_result
+  until: pkg_result is success
 
 - name: ensure directories exist
   file:
@@ -50,14 +53,20 @@
     - "{{ zentral_logdir }}"
 
 - include: secret.yml
-- set_fact:
+- name: Set fact api secret
+  set_fact:
     api_secret: "{{ rand.stdout }}"
+  no_log: true
 - include: secret.yml
-- set_fact:
+- name: Set fact django secret
+  set_fact:
     django_secret: "{{ rand.stdout }}"
+  no_log: true
 - include: secret.yml
-- set_fact:
+- name: Set fact prometheus secret
+  set_fact:
     prometheus_secret: "{{ rand.stdout }}"
+  no_log: true
 
 - name: configure zentral
   template:
@@ -71,7 +80,8 @@
   when: zentral_certificate_cert == ''
 
 - name: create cert full chain
-  shell: "cat {{ zentral_certificate_root_ca }} {{ zentral_certificate_cert }} > {{ zentral_certificate_cert_fullchain }}"
+  shell: >
+    cat {{ zentral_certificate_root_ca }} {{ zentral_certificate_cert }} > {{ zentral_certificate_cert_fullchain }}
   args:
     creates: "{{ zentral_homedir }}/zentral_full_chain.crt"
   when: zentral_certificate_root_ca != '' and zentral_certificate_cert != ''
@@ -81,7 +91,8 @@
 
 ## FIXME! have file inside /var/_zentral/zentral/conf/start/docker/tls/
 
-## FIXME! https://github.com/zentralopensource/zentral/blob/master/docker-compose.saml2.yml to convert base.json in zentral.conf / /var/_zentral/zentral/server/server/settings.py
+## FIXME! https://github.com/zentralopensource/zentral/blob/master/docker-compose.saml2.yml to convert
+##               base.json in zentral.conf / /var/_zentral/zentral/server/server/settings.py
 
 - block:
     - name: install zentral systemd configuration

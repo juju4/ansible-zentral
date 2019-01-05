@@ -49,4 +49,3 @@ suites:
     attributes:
     includes:
       - centos-7
-

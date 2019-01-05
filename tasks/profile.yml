@@ -7,4 +7,3 @@
     line: "export ZENTRAL_CONF_DIR={{ zentral_homedir }}/zentral/conf/start/zentral"
     backup: yes
     create: yes
-

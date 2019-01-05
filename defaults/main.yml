@@ -35,4 +35,3 @@ zentral_elastic_servers:
 zentral_kibana_base_url: "https://{{ zentral_cn }}/kibana/"
 
 zentral_rabbitmq_enable: true
-
