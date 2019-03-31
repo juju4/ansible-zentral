@@ -11,6 +11,8 @@ zentral_pkg_deps:
   - openssl-devel
   - python36-devel
 
+zentral_pip3: pip3.6
+
 gunicorn_path: /bin/gunicorn
 ssl_user: root
 ssl_dir: /etc/pki/tls/certs

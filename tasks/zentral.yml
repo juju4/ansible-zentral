@@ -38,7 +38,7 @@
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
-    executable: pip3
+    executable: "{{ zentral_pip3 | default('pip3') }}"
   register: pkg_result
   until: pkg_result is success
 
