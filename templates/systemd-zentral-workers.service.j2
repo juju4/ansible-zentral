@@ -15,7 +15,7 @@ User=_zentral
 Group=_zentral
 Environment="ZENTRAL_CONF_DIR={{ zentral_homedir }}/zentral/conf/start/zentral"
 WorkingDirectory={{ zentral_homedir }}/zentral
-ExecStart=/usr/bin/python3 server/manage.py runworkers
+ExecStart=/usr/bin/{{ zentral_python3 | default('python3') }} server/manage.py runworkers
 #ExecStart=/usr/bin/python3 server/manage.py runworkers --prometheus-sd-file {{ zentral_homedir }}/zentral/conf/prometheus_sd/workers.yml --promotheus-base-port 8100
 UMask=0022
 TimeoutSec=30
