@@ -11,6 +11,7 @@ zentral_pkg_deps:
   - openssl-devel
   - python36-devel
 
+zentral_python3: python3.6
 zentral_pip3: pip3.6
 
 gunicorn_path: /bin/gunicorn

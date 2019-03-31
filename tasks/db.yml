@@ -11,19 +11,19 @@
     - { re: "^(\\s+)'USER': .*,", rep: "\\1'USER': '{{ zentral_pgsql_user }}'," }
 
 - name: migrate db
-  command: python3 manage.py migrate
+  command: "{{ zentral_python3 | default('python3') }} manage.py migrate"
   args:
     chdir: "{{ zentral_homedir }}/zentral/server"
   environment:
     ZENTRAL_CONF_DIR: "{{ zentral_homedir }}/zentral/conf/start/zentral"
   register: migratedb
-  changed_when: not ('No migrations to apply' in migratedb.stdout)
+  changed_when: migratedb.stdout is defined and not ('No migrations to apply' in migratedb.stdout)
   become: yes
   become_user: "_zentral"
 #- debug: var=migratedb
 
 - name: create users
-  command: "python3 manage.py create_zentral_user {{ item.user }} {{ item.email }}"
+  command: "{{ zentral_python3 | default('python3') }} manage.py create_zentral_user {{ item.user }} {{ item.email }}"
   args:
     chdir: "{{ zentral_homedir }}/zentral/server"
   environment:
