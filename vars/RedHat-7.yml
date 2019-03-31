@@ -4,12 +4,12 @@ zentral_pkg_deps:
   - cpio
   - git
   - xmlsec1
-  - python34
-  - python34-pip
+  - python36
+  - python36-pip
   - gcc
   - libffi-devel
   - openssl-devel
-  - python34-devel
+  - python36-devel
 
 gunicorn_path: /bin/gunicorn
 ssl_user: root
