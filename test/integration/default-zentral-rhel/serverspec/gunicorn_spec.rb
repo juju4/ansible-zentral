@@ -13,7 +13,7 @@ describe file('/usr/local/bin/gunicorn'), :if => os[:family] == 'ubuntu' || os[:
   it { should be_file }
   it { should be_executable }
 end
-describe file('/bin/gunicorn'), :if => os[:family] == 'redhat' do
+describe file('/usr/local/bin/gunicorn'), :if => os[:family] == 'redhat' do
   it { should be_file }
   it { should be_executable }
 end
