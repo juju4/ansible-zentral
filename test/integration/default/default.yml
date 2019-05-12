@@ -10,6 +10,9 @@
         password: "{{ zentral_pgsql_pass }}"
         priv: ALL
         db: "{{ zentral_pgsql_db }}"
+    - rabbitmq_guest_enable: true
+    - rabbitmq_conf_tcp_listeners_address: localhost
+    - rabbitmq_conf_ssl_listeners_address: localhost
     - rabbitmq_cert_source: 'self'
     - elasticsearch_repo_version: 5.x 
     - elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
