@@ -29,3 +29,6 @@ describe file('/var/log/zentral/gunicorn.err') do
   its(:content) { should_not match /Error/ }
 end
 
+describe command('journalctl -u zentral-workers -l --no-pager') do
+  its(:stdout) { should_not match /Error/)
+end
