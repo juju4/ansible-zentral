@@ -28,7 +28,7 @@
 {% if zentral_rabbitmq_enable %}
   "queues": {
     "backend": "zentral.core.queues.backends.kombu",
-    "backend_url": "amqp://guest:guest@rabbitmq:5672//"
+    "backend_url": "{{ zentral_rabbitmq_url }}"
   },
 {% endif %}
   "stores": {

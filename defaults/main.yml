@@ -35,3 +35,5 @@ zentral_elastic_servers:
 zentral_kibana_base_url: "https://{{ zentral_cn }}/kibana/"
 
 zentral_rabbitmq_enable: true
+#zentral_rabbitmq_url: amqps://guest:guest@rabbitmq:5672//
+zentral_rabbitmq_url: amqp://guest:guest@localhost:5671/
