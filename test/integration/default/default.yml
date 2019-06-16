@@ -1,7 +1,6 @@
 ---
 
 - hosts: all
-#- hosts: test-kitchen
   vars:
     - postgresql_databases:
       - name: "{{ zentral_pgsql_db }}"
