@@ -14,7 +14,6 @@
     - rabbitmq_conf_ssl_listeners_address: localhost
     - rabbitmq_cert_source: 'self'
     - elasticsearch_repo_version: 5.x 
-    - elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
     - logstash_repo_version: 5.x 
     - kibana_repo_version: 5.x
   pre_tasks:
@@ -27,5 +26,8 @@
         postgresql_config_path: '/var/lib/pgsql/9.5/data'
         postgresql_daemon: 'postgresql-9.5'
       when: ansible_os_family == "RedHat" and ansible_distribution_version.split('.')[0] == '7'
+    - set_fact:
+        elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
+      when: ansible_os_family == "Debian"
   roles:
     - juju4.zentral
