@@ -10,7 +10,7 @@ env:
 #    version: 6
   - distribution: centos
     version: 7
-    suite: default-zentral-rhel
+    suite: default
   - distribution: ubuntu
     version: 18.04
     suite: default
@@ -23,6 +23,9 @@ env:
 #    version: 12.04
 #  - distribution: alpine
 #    version: 3.4
+  - distribution: centos
+    version: 7
+    suite: default-HEAD
   - distribution: ubuntu
     version: 18.04
     suite: default-HEAD
