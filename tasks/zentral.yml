@@ -35,6 +35,14 @@
     regexp: '^cryptography.*'
     replace: 'cryptography>=1.7.1'
 
+# https://github.com/zentralopensource/zentral/commit/eff616e8bd69d096c4a921fe46a11ba9622f5cab
+- name: force psycopg2-binary in python pip requirements
+  replace:
+    dest: "{{ zentral_homedir }}/zentral/requirements.txt"
+    regexp: '^psycopg2$'
+    replace: 'psycopg2-binary'
+  when: zentral_version == 'v0.4.0'
+
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
