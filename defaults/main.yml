@@ -1,6 +1,6 @@
 ---
 
-zentral_version: HEAD
+zentral_version: v0.4.0
 
 zentral_users:
   - { user: zadmin, email: 'root@localhost' }
