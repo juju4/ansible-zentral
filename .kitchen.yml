@@ -44,6 +44,12 @@ suites:
       - ubuntu-18.04
       - ubuntu-16.04
       - centos-7
+  - name: default-v05b0
+    run_list:
+    attributes:
+    includes:
+      - ubuntu-18.04
+      - centos-7
   - name: default-HEAD
     run_list:
     attributes:

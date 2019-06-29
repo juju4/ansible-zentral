@@ -25,6 +25,12 @@ env:
 #    version: 3.4
   - distribution: centos
     version: 7
+    suite: default-v05b0
+  - distribution: ubuntu
+    version: 18.04
+    suite: default-v05b0
+  - distribution: centos
+    version: 7
     suite: default-HEAD
   - distribution: ubuntu
     version: 18.04
