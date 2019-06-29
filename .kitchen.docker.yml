@@ -43,7 +43,7 @@ suites:
   - name: default
     run_list:
     attributes:
-  - name: default-v05b0
+  - name: default-v05
     run_list:
     attributes:
     includes:

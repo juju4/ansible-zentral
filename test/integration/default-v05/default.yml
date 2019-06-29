@@ -2,7 +2,7 @@
 
 - hosts: all
   vars:
-    - zentral_version: v0.5.0-beta.0
+    - zentral_version: v0.5.0-beta.1
     - postgresql_databases:
       - name: "{{ zentral_pgsql_db }}"
     - postgresql_users:
