@@ -1,5 +1,13 @@
 ---
 
+- meta: flush_handlers
+
+- name: Ensure Rabbitmq is available
+  wait_for:
+    host: localhost
+    port: 5672
+    delay: 10
+
 - name: Install zentral package dependencies
   package: name={{ zentral_pkg_deps }} state=present
   register: pkg_result
