@@ -1,7 +1,6 @@
 ---
 
-zentral_version: v0.4.0
-#zentral_version: v0.5.0-beta.0
+zentral_version: v0.5.0-beta.1
 
 zentral_users:
   - { user: zadmin, email: 'root@localhost' }
