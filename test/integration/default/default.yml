@@ -25,6 +25,11 @@
         postgresql_bin_path: '/usr/pgsql-9.5/bin'
         postgresql_config_path: '/var/lib/pgsql/9.5/data'
         postgresql_daemon: 'postgresql-9.5'
+        postgresql_python_library: ""
+      when: ansible_os_family == "RedHat" and ansible_distribution_version.split('.')[0] == '7'
+    - name: Install psycopg2-binary - avoid undefined symbol PQencryptPasswordConn
+      pip: name=psycopg2-binary
+      become: yes
       when: ansible_os_family == "RedHat" and ansible_distribution_version.split('.')[0] == '7'
     - set_fact:
         elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
