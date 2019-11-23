@@ -138,7 +138,7 @@
           notify:
             - reload systemd
         - include: "immutable.yml target_dir=/lib/systemd/system state=post"
-      when: systemdconf|failed
+      when: systemdconf is failed
     - block:
         - name: enable and start zentral systemd services
           service:
