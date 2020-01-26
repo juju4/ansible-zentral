@@ -43,12 +43,6 @@
     regexp: '^cryptography.*'
     replace: 'cryptography>=1.7.1'
 
-- name: force elasticsearch 7.1 in python pip requirements
-  replace:
-    dest: "{{ zentral_homedir }}/zentral/requirements.txt"
-    regexp: '^elasticsearch.*'
-    replace: 'elasticsearch==7.1.0'
-
 # https://github.com/zentralopensource/zentral/commit/eff616e8bd69d096c4a921fe46a11ba9622f5cab
 - name: force psycopg2-binary in python pip requirements
   replace:
