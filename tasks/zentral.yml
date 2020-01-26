@@ -51,6 +51,16 @@
     replace: 'psycopg2-binary'
   when: zentral_version == 'v0.4.0'
 
+- name: force elasticsearch 7.1 in python pip requirements
+  replace:
+    dest: "{{ zentral_homedir }}/zentral/requirements.txt"
+    regexp: '^elasticsearch.*'
+    replace: 'elasticsearch==7.1.0'
+  when: >
+    zentral_version is match('v0.4.0*') or
+    zentral_version is match('v0.5.0*') or
+    zentral_version is match('v0.6.0-beta*')
+
 - name: install python pip requirements
   pip:
     requirements: "{{ zentral_homedir }}/zentral/requirements.txt"
