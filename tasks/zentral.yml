@@ -51,6 +51,13 @@
     replace: 'psycopg2-binary'
   when: zentral_version == 'v0.4.0'
 
+- name: Xenial | force kombu 4.6.3 - kombu#1096
+  replace:
+    dest: "{{ zentral_homedir }}/zentral/requirements.txt"
+    regexp: '^kombu.*'
+    replace: 'kombu==4.6.3'
+  when: ansible_distribution_release == 'xenial'
+
 - name: force elasticsearch 7.1 in python pip requirements
   replace:
     dest: "{{ zentral_homedir }}/zentral/requirements.txt"
