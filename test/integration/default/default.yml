@@ -19,7 +19,7 @@
   pre_tasks:
     - set_fact:
         postgresql_repo: >
-          https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-redhat95-9.5-3.noarch.rpm
+          https://download.postgresql.org/pub/repos/yum/9.5/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
         postgresql_pkgnames: [ 'postgresql95', 'postgresql95-server' ]
         postgresql_data_dir: '/var/lib/pgsql/9.5/data'
         postgresql_bin_path: '/usr/pgsql-9.5/bin'
