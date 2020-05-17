@@ -10,6 +10,7 @@ zentral_pkg_deps:
   - libffi-devel
   - openssl-devel
   - python36-devel
+  - openldap-devel
 
 zentral_python3: python3.6
 zentral_pip3: pip3.6
