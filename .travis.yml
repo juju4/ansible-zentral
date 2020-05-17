@@ -23,6 +23,9 @@ env:
     version: 7
     suite: default-HEAD
   - distribution: ubuntu
+    version: 20.04
+    suite: default-HEAD
+  - distribution: ubuntu
     version: 18.04
     suite: default-HEAD
 
