@@ -34,5 +34,6 @@
     - set_fact:
         elasticsearch_es_java_opts: '-Xms512m -Xmx512m'
       when: ansible_os_family == "Debian"
+    - debug: var=ansible_python_interpreter
   roles:
     - juju4.zentral
