@@ -107,7 +107,7 @@
     dest: "{{ zentral_homedir }}/zentral/conf/start/zentral/base.json"
     mode: '0644'
     backup: yes
-    validate: "{{ zentral_python_bin }} -mjson.tool %s"
+    validate: "{{ zentral_python_bin | default('python') }} -mjson.tool %s"
 
 - include: certificate-selfsigned.yml
   when: zentral_certificate_cert == ''
