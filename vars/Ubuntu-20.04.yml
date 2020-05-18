@@ -13,6 +13,10 @@ zentral_pkg_deps:
   - libldap2-dev
   - libsasl2-dev
 
+zentral_python3: python3
+zentral_pip3: pip3
+zentral_python_bin: python3
+
 gunicorn_path: /usr/local/bin/gunicorn
 ssl_user: ssl-cert
 ssl_dir: /etc/ssl
